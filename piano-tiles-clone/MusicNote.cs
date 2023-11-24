@@ -10,7 +10,7 @@ namespace piano_tiles_clone
 {
     public class MusicNote
     {
-        // music note properties
+        // Music note properties
         NoteSound sound = new NoteSound();
         Vector2 position;
         Vector2 size;
@@ -54,12 +54,18 @@ namespace piano_tiles_clone
             }
         }
 
-        // returns number from 0 to 3
+        // Returns number from 0 to 3
         public int RandomNumber()
         {
             Random rng = new Random();
             int randomNumber = rng.Next(4);
             return randomNumber;
+        }
+
+        // Draw to screen
+        public void Draw()
+        {
+            Raylib.DrawRectangleV(position, size, color);
         }
     }
 }
