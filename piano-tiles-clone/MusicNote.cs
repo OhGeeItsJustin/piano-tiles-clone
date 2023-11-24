@@ -14,6 +14,7 @@ namespace piano_tiles_clone
         NoteSound sound = new NoteSound();
         Vector2 position;
         Vector2 size;
+        Vector2 speed;
         Color color;
         int noteValue;
         int points;
@@ -24,6 +25,7 @@ namespace piano_tiles_clone
             int certainNote = RandomNumber();
             size.X = 100;
             size.Y = 100;
+            speed.Y = 150;
             points = 1;
             switch (certainNote)
             {
@@ -66,6 +68,12 @@ namespace piano_tiles_clone
         public void Draw()
         {
             Raylib.DrawRectangleV(position, size, color);
+        }
+
+        // Move music note object on Y horizontal
+        public void Move()
+        {
+            position.Y += speed.Y * Raylib.GetFrameTime();
         }
     }
 }
