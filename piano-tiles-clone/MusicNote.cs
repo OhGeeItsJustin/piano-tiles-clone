@@ -10,5 +10,10 @@ namespace piano_tiles_clone
 {
     public class MusicNote
     {
+        NoteSound sound = new NoteSound();
+        Vector2 position;
+        Vector2 size;
+        Color color;
+        int points;
     }
 }
