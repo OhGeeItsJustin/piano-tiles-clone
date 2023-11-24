@@ -10,10 +10,19 @@ namespace piano_tiles_clone
 {
     public class MusicNote
     {
+        // music note properties
         NoteSound sound = new NoteSound();
         Vector2 position;
         Vector2 size;
         Color color;
         int points;
+
+        // returns number from 0 to 3
+        public int RandomNumber()
+        {
+            Random rng = new Random();
+            int randomNumber = rng.Next(4);
+            return randomNumber;
+        }
     }
 }
