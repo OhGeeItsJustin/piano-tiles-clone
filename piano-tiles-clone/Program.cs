@@ -1,4 +1,5 @@
 ﻿using Raylib_cs;
+using System.Numerics;
 
 namespace piano_tiles_clone
 {
@@ -6,6 +7,7 @@ namespace piano_tiles_clone
     {
         // If you need variables in the Program class (outside functions), you must mark them as static
         static string title = "Game Title";
+        static MusicNote note;
 
         static void Main(string[] args)
         {
@@ -38,11 +40,23 @@ namespace piano_tiles_clone
         static void Setup()
         {
             // Your one-time setup code here
+            note = new MusicNote();
         }
 
         static void Update()
         {
             // Your game code run each frame here
+            Vector2 position = note.GetPosition();
+            if (position.Y > 500)
+            {
+                note.NoteDisappear();
+            }
+            if (position.Y < 100)
+            {
+                note.NoteAppear();
+            }
+            note.Draw();
+            note.Move();
         }
     }
 }
