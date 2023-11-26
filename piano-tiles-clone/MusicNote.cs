@@ -24,8 +24,8 @@ namespace piano_tiles_clone
         {
             int certainNote = RandomNumber();
             size.X = 100;
-            size.Y = 100;
-            speed.Y = 150;
+            size.Y = 0;
+            speed.Y = 5;
             points = 1;
             switch (certainNote)
             {
@@ -80,6 +80,12 @@ namespace piano_tiles_clone
         public Vector2 GetPosition()
         {
             return position;
+        }
+
+        // Function will be used when music note hits position Y 500 or greater to make note disappear off screen.
+        public void NoteDisappear()
+        {
+            size.Y--; 
         }
     }
 }
