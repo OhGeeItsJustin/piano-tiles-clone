@@ -101,5 +101,18 @@ namespace piano_tiles_clone
                 speed.Y = 80;
             }
         }
+
+        // If music note is near the bottom of the screen return true
+        // Will be used to start displaying the next note when this current note is near the bottom of screen
+        public bool NextNote()
+        {
+            bool newNote = false;
+            if (size.Y >= 0 && position.Y > 400)
+            {
+                newNote = true;
+            }
+
+            return newNote;
+        }
     }
 }
