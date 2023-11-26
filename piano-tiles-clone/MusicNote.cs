@@ -75,5 +75,11 @@ namespace piano_tiles_clone
         {
             position.Y += speed.Y * Raylib.GetFrameTime();
         }
+
+        // Return notes X and Y position for collision dectection
+        public Vector2 GetPosition()
+        {
+            return position;
+        }
     }
 }
