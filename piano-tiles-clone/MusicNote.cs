@@ -85,9 +85,9 @@ namespace piano_tiles_clone
         // Function will be used when music note hits position Y 500 or greater to make note disappear off screen
         public void NoteDisappear()
         {
-            size.Y--; 
+            size.Y--;
         }
-        
+
         // Function will be used to make music note slowly grow when its first created on the top of the screen until it hits position Y of 100 where it will stay at the size 100
         // Will make the music note look like its slowly coming in from top of the screen
         public void NoteAppear()
