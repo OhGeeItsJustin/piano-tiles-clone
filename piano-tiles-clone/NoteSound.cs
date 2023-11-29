@@ -16,6 +16,10 @@ namespace piano_tiles_clone
         {
             InitAudioDevice();
             sounds[0] = LoadSound("../../../SoundAssets/QSound.WAV");
-       }  
+       }
+        public void PlayQSound() 
+        {
+            PlaySound(sounds[0]);
+        }
     }
 }
