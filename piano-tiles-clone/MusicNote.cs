@@ -11,7 +11,7 @@ namespace piano_tiles_clone
     public class MusicNote
     {
         // Music note properties
-        //NoteSound sound = new NoteSound();
+        NoteSound sound = new NoteSound();
         Vector2 position;
         Vector2 size;
         Vector2 speed;
@@ -95,6 +95,7 @@ namespace piano_tiles_clone
             if (size.Y < 100)
             {
                 size.Y++;
+                sound.PlayQSound();
             }
             else
             {

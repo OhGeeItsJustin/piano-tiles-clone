@@ -15,11 +15,16 @@ namespace piano_tiles_clone
         public NoteSound() 
         {
             InitAudioDevice();
-            sounds[0] = LoadSound("../../../SoundAssets/QSound.WAV");
+            sounds[0] = LoadSound("../../../SoundAssets/QSound.wav");
        }
         public void PlayQSound() 
         {
             PlaySound(sounds[0]);
+        }
+        public void EndSounds()
+        {
+            UnloadSound(sounds[0]);
+            CloseAudioDevice();
         }
     }
 }
