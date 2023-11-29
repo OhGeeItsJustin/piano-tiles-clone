@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Raylib_cs.Raylib;
 
 namespace piano_tiles_clone
 {
@@ -13,7 +14,8 @@ namespace piano_tiles_clone
         Sound buzzer;
         public NoteSound() 
         {
-
+            InitAudioDevice();
+            sounds[0] = LoadSound("../../../SoundAssets/QSound.WAV");
        }  
     }
 }
