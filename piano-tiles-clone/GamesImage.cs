@@ -11,5 +11,12 @@ namespace piano_tiles_clone
 {
     internal class GamesImage
     {
+        Image goodStamp;
+        Image badStamp;
+        Image nuteralStamp;
+        public GamesImage() 
+        { 
+
+        }
     }
 }
