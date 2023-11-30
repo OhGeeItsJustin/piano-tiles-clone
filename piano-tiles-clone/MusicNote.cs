@@ -121,5 +121,25 @@ namespace piano_tiles_clone
 
             return newNote;
         }
+
+        // Function will be called when the note collides with the CollisionBlock to play that notes sound
+        public void PlayNoteSound()
+        {
+            switch (noteValue)
+            {
+                case 0:
+                    sound.PlayQSound();
+                    break;
+                case 1:
+                    sound.PlayWSound();
+                    break;
+                case 2:
+                    sound.PlayESound();
+                    break;
+                case 3:
+                    sound.PlayRSound();
+                    break;
+            }
+        }
     }
 }
