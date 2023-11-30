@@ -82,6 +82,12 @@ namespace piano_tiles_clone
             return position;
         }
 
+        // Return int value from 0 - 3 which represents the notes Q = 0, W = 1, E = 2, R = 3
+        public int GetNoteValue()
+        {
+            return noteValue;
+        }
+
         // Function will be used when music note hits position Y 500 or greater to make note disappear off screen
         public void NoteDisappear()
         {
