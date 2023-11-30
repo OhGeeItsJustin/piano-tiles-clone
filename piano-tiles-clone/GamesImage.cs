@@ -14,10 +14,24 @@ namespace piano_tiles_clone
         Image goodStamp;
         Image badStamp;
         Image nuteralStamp;
+        Texture2D goodStampTexture;
         public GamesImage() 
         {
             goodStamp = LoadImage("../../../Image assets/good job image.jpg");
+            goodStampTexture = LoadTextureFromImage(goodStamp);
 
+            //bad stamp 
+
+
+        }
+
+        public void DisplayGoodImage () 
+        {
+            DrawTexture(
+                goodStampTexture,
+                600,
+                0,
+                Color.WHITE);
         }
     }
 }
