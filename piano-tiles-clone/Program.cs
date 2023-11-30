@@ -8,7 +8,9 @@ namespace piano_tiles_clone
         // If you need variables in the Program class (outside functions), you must mark them as static
         static string title = "Game Title";
         static MusicNote note;
-        static GamesImage image; 
+        static GamesImage image;
+        static CollisionBlock[] collisionBlocks = new CollisionBlock[4];
+        static Color[] collisionColors = { Color.RED, Color.ORANGE, Color.GREEN, Color.YELLOW};
          
 
         static void Main(string[] args)
@@ -44,10 +46,22 @@ namespace piano_tiles_clone
             // Your one-time setup code here
             note = new MusicNote();
             image = new GamesImage();
+
+            int collisionBlockY = 450;
+            int collisionBlockX = 50;
+            for (int i = 0; i < collisionBlocks.Length; i++)
+            {
+                collisionBlocks[i] = new CollisionBlock(collisionBlockX, collisionBlockY, collisionColors[i]);
+                collisionBlockX += 200;
+            }
         }
 
         static void Update()
         {
+            for (int i = 0; i < collisionBlocks.Length; i++)
+            {
+                collisionBlocks[i].Draw();
+            }
             image.DisplayGoodImage();
             // Your game code run each frame here
             Vector2 position = note.GetPosition();
@@ -61,6 +75,10 @@ namespace piano_tiles_clone
             }
             note.Draw();
             note.Move();
+            Raylib.DrawText("Q", 90, 485, 32, Color.BLACK);
+            Raylib.DrawText("W", 290, 485, 32, Color.BLACK);
+            Raylib.DrawText("E", 490, 485, 32, Color.BLACK);
+            Raylib.DrawText("R", 690, 485, 32, Color.BLACK);
         }
     }
 }
