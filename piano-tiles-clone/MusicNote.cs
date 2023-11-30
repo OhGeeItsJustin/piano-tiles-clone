@@ -113,9 +113,10 @@ namespace piano_tiles_clone
         public bool NextNote()
         {
             bool newNote = false;
-            if (size.Y >= 0 && position.Y > 499)
+            if (size.Y >= 0 && position.Y > 599)
             {
                 newNote = true;
+                sound.PlayBuzzer();
             }
 
             return newNote;
