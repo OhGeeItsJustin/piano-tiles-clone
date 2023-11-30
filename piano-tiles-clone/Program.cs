@@ -12,6 +12,8 @@ namespace piano_tiles_clone
         static GamesImage image;
         static CollisionBlock[] collisionBlocks = new CollisionBlock[4];
         static Color[] collisionBlockColors = { Color.RED, Color.ORANGE, Color.GREEN, Color.YELLOW };
+        static int combo;
+        static int playerScore;
 
 
         static void Main(string[] args)
@@ -46,6 +48,8 @@ namespace piano_tiles_clone
         {
             // Your one-time setup code here
             image = new GamesImage();
+            combo = 0;
+            playerScore = 0;
 
             int collisionBlockY = 450;
             int collisionBlockX = 50;
@@ -57,7 +61,7 @@ namespace piano_tiles_clone
 
             InitAudioDevice();
 
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 5; j++)
             {
                 MusicNote note = new MusicNote();
                 notes.Add(note);
@@ -66,38 +70,81 @@ namespace piano_tiles_clone
 
         static void Update()
         {
-            for (int i = 0; i < collisionBlocks.Length; i++)
+            if(combo != -4 && notes.Count != 0)
             {
-                collisionBlocks[i].Draw();
-            }
-
-            notes[0].Draw();
-            notes[0].Move();
-
-            //Your game code run each frame here
-            Vector2 position = notes[0].GetPosition();
-            if (position.Y > 500)
-            {
-                notes[0].NoteDisappear();
-            }
-            if (position.Y < 100)
-            {
-                notes[0].NoteAppear();
-            }
-
-            for (int i = 0; i < collisionBlocks.Length; i++)
-            {
-                if (collisionBlocks[i].CollideWithNote(notes[0]) || notes[0].NextNote())
+                for (int i = 0; i < collisionBlocks.Length; i++)
                 {
-                    notes.RemoveAt(0);
+                    collisionBlocks[i].Draw();
                 }
-            }
+                if(notes.Count != 0)
+                {
+                    notes[0].Draw();
+                    notes[0].Move();
 
-            Raylib.DrawText("Q", 90, 485, 32, Color.BLACK);
-            Raylib.DrawText("W", 290, 485, 32, Color.BLACK);
-            Raylib.DrawText("E", 490, 485, 32, Color.BLACK);
-            Raylib.DrawText("R", 690, 485, 32, Color.BLACK);
-            image.DisplayGoodImage();
+                    //Your game code run each frame here
+                    Vector2 position = notes[0].GetPosition();
+                    if (position.Y > 500)
+                    {
+                        notes[0].NoteDisappear();
+                    }
+                    if (position.Y < 100)
+                    {
+                        notes[0].NoteAppear();
+                    }
+
+                    for (int i = 0; i < collisionBlocks.Length; i++)
+                    {
+                        if (notes.Count > 0)
+                        {
+                            if (collisionBlocks[i].CollideWithNote(notes[0]))
+                            {
+                                playerScore++;
+                                notes.RemoveAt(0);
+                                if (combo > 0)
+                                {
+                                    combo++;
+                                }
+                                else
+                                {
+                                    combo = 1;
+                                }
+                            }
+                        }
+                        if (notes.Count > 0)
+                        {
+                            if (notes[0].NextNote())
+                            {
+                                notes.RemoveAt(0);
+                                if (combo < 0)
+                                {
+                                    combo--;
+                                }
+                                else
+                                {
+                                    combo = -1;
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+
+                Raylib.DrawText("Q", 90, 485, 32, Color.BLACK);
+                Raylib.DrawText("W", 290, 485, 32, Color.BLACK);
+                Raylib.DrawText("E", 490, 485, 32, Color.BLACK);
+                Raylib.DrawText("R", 690, 485, 32, Color.BLACK);
+                Raylib.DrawText("Combo: " + combo.ToString(), 10, 10, 32, Color.BLACK);
+                Raylib.DrawText("Score: " + playerScore.ToString(), 10, 40, 32, Color.BLACK);
+                image.DisplayGoodImage();
+            }
+            else if (combo == -4)
+            {
+                Raylib.DrawText($"Game Over final score: {playerScore}", (int)(Raylib.GetScreenHeight() / 3), (int)(Raylib.GetScreenWidth() / 3), 32, Color.BLACK);
+            }
+            else if (combo > -4 && notes.Count == 0)
+            {
+                Raylib.DrawText($"Congrats you win! Final Score: {playerScore}", (int)(Raylib.GetScreenHeight() / 4), (int)(Raylib.GetScreenWidth() / 3), 32, Color.BLACK);
+            }
         }
     }
 }

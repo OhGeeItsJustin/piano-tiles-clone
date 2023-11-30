@@ -113,7 +113,7 @@ namespace piano_tiles_clone
         public bool NextNote()
         {
             bool newNote = false;
-            if (size.Y >= 0 && position.Y > 599)
+            if (size.Y >= 0 && position.Y > 499)
             {
                 newNote = true;
             }
