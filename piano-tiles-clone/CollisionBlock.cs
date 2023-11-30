@@ -46,21 +46,25 @@ namespace piano_tiles_clone
                 if (note.GetNoteValue() == 0 && Raylib.IsKeyPressed(KeyboardKey.KEY_Q))
                 {
                     noteCollide = true;
+                    note.PlayNoteSound();
                 }
 
                 if (note.GetNoteValue() == 1 && Raylib.IsKeyPressed(KeyboardKey.KEY_W))
                 {
                     noteCollide = true;
+                    note.PlayNoteSound();
                 }
 
                 if (note.GetNoteValue() == 2 && Raylib.IsKeyPressed(KeyboardKey.KEY_E))
                 {
                     noteCollide = true;
+                    note.PlayNoteSound();
                 }
 
                 if (note.GetNoteValue() == 3 && Raylib.IsKeyPressed(KeyboardKey.KEY_R))
                 {
                     noteCollide = true;
+                    note.PlayNoteSound();
                 }
             }
 
