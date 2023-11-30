@@ -61,7 +61,7 @@ namespace piano_tiles_clone
 
             InitAudioDevice();
 
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < 10; j++)
             {
                 MusicNote note = new MusicNote();
                 notes.Add(note);
@@ -70,7 +70,18 @@ namespace piano_tiles_clone
 
         static void Update()
         {
-            if(combo != -4 && notes.Count != 0)
+            if(combo > 4)
+            {
+                image.DisplayGoodImage();
+            } else if(combo < 5 && combo > -1)
+            {
+                image.DisplayNuteralImage();
+            } else if(combo < 0)
+            {
+                image.DisplayBadImage();
+            }
+
+            if (combo != -4 && notes.Count != 0)
             {
                 for (int i = 0; i < collisionBlocks.Length; i++)
                 {
@@ -135,7 +146,6 @@ namespace piano_tiles_clone
                 Raylib.DrawText("R", 690, 485, 32, Color.BLACK);
                 Raylib.DrawText("Combo: " + combo.ToString(), 10, 10, 32, Color.BLACK);
                 Raylib.DrawText("Score: " + playerScore.ToString(), 10, 40, 32, Color.BLACK);
-                image.DisplayGoodImage();
             }
             else if (combo == -4)
             {

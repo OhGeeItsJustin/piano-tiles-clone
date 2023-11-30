@@ -20,13 +20,13 @@ namespace piano_tiles_clone
         public GamesImage() 
         {
             //this will be used to load and unload each image 
-            goodStamp = LoadImage("../../../Image assets/good job image.jpg");
+            goodStamp = LoadImage("../../../Image assets/good job image.png");
             goodStampTexture = LoadTextureFromImage(goodStamp);
             UnloadImage(goodStamp);
             badStamp = LoadImage("../../../Image assets/bad image.png");
             badStampTexture = LoadTextureFromImage(badStamp);
             UnloadImage(badStamp);
-            nuteralStamp = LoadImage("../../../Image assets/ok image.jpg");
+            nuteralStamp = LoadImage("../../../Image assets/ok image.png");
             nuteralStampTexture = LoadTextureFromImage(nuteralStamp);
             UnloadImage(nuteralStamp);
              
@@ -39,7 +39,7 @@ namespace piano_tiles_clone
             BeginDrawing();
             DrawTexture(
                 goodStampTexture,
-                600,
+                700,
                 0,
                 Color.WHITE);
         }
@@ -48,7 +48,7 @@ namespace piano_tiles_clone
             BeginDrawing();
             DrawTexture(
                  badStampTexture,
-                 600,
+                 700,
                  0,
                  Color.WHITE);
         }
@@ -57,10 +57,9 @@ namespace piano_tiles_clone
             BeginDrawing(); 
             DrawTexture(
                 nuteralStampTexture,
-                600,
+                700,
                 0,
                 Color.WHITE);
         }
-
     }
 }
