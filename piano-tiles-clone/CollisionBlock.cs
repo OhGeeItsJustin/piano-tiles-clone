@@ -41,7 +41,7 @@ namespace piano_tiles_clone
 
             // If the MusicNote Y position is inside the Y position and the Y position + Y size for the CollisionBlock
             // check to see if the correct key was pressed
-            if (notePosition.Y > (position.Y - 2) && notePosition.Y < (position.Y + size.Y + 2))
+            if (notePosition.Y > (position.Y - 10) && notePosition.Y < (position.Y + size.Y + 10))
             {
                 if (note.GetNoteValue() == 0 && Raylib.IsKeyPressed(KeyboardKey.KEY_Q))
                 {

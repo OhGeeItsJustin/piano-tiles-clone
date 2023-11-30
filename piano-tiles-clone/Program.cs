@@ -1,5 +1,6 @@
 ﻿using Raylib_cs;
 using System.Numerics;
+using static Raylib_cs.Raylib;
 
 namespace piano_tiles_clone
 {
@@ -7,11 +8,11 @@ namespace piano_tiles_clone
     {
         // If you need variables in the Program class (outside functions), you must mark them as static
         static string title = "Game Title";
-        static MusicNote note;
+        static List<MusicNote> notes = new List<MusicNote>();
         static GamesImage image;
         static CollisionBlock[] collisionBlocks = new CollisionBlock[4];
-        static Color[] collisionColors = { Color.RED, Color.ORANGE, Color.GREEN, Color.YELLOW};
-         
+        static Color[] collisionBlockColors = { Color.RED, Color.ORANGE, Color.GREEN, Color.YELLOW };
+
 
         static void Main(string[] args)
         {
@@ -44,15 +45,22 @@ namespace piano_tiles_clone
         static void Setup()
         {
             // Your one-time setup code here
-            note = new MusicNote();
             image = new GamesImage();
 
             int collisionBlockY = 450;
             int collisionBlockX = 50;
             for (int i = 0; i < collisionBlocks.Length; i++)
             {
-                collisionBlocks[i] = new CollisionBlock(collisionBlockX, collisionBlockY, collisionColors[i]);
+                collisionBlocks[i] = new CollisionBlock(collisionBlockX, collisionBlockY, collisionBlockColors[i]);
                 collisionBlockX += 200;
+            }
+
+            InitAudioDevice();
+
+            for (int j = 0; j < 10; j++)
+            {
+                MusicNote note = new MusicNote();
+                notes.Add(note);
             }
         }
 
@@ -62,23 +70,34 @@ namespace piano_tiles_clone
             {
                 collisionBlocks[i].Draw();
             }
-            image.DisplayGoodImage();
-            // Your game code run each frame here
-            Vector2 position = note.GetPosition();
+
+            notes[0].Draw();
+            notes[0].Move();
+
+            //Your game code run each frame here
+            Vector2 position = notes[0].GetPosition();
             if (position.Y > 500)
             {
-                note.NoteDisappear();
+                notes[0].NoteDisappear();
             }
             if (position.Y < 100)
             {
-                note.NoteAppear();
+                notes[0].NoteAppear();
             }
-            note.Draw();
-            note.Move();
+
+            for (int i = 0; i < collisionBlocks.Length; i++)
+            {
+                if (collisionBlocks[i].CollideWithNote(notes[0]) || notes[0].NextNote())
+                {
+                    notes.RemoveAt(0);
+                }
+            }
+
             Raylib.DrawText("Q", 90, 485, 32, Color.BLACK);
             Raylib.DrawText("W", 290, 485, 32, Color.BLACK);
             Raylib.DrawText("E", 490, 485, 32, Color.BLACK);
             Raylib.DrawText("R", 690, 485, 32, Color.BLACK);
+            image.DisplayGoodImage();
         }
     }
 }

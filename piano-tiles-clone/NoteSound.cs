@@ -14,7 +14,6 @@ namespace piano_tiles_clone
         Sound buzzer;
         public NoteSound() 
         {
-            InitAudioDevice();
             sounds[0] = LoadSound("../../../SoundAssets/QSound.wav");
        }
         public void PlayQSound() 
