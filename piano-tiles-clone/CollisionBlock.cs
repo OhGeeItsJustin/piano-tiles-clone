@@ -25,5 +25,10 @@ namespace piano_tiles_clone
 
         }
 
+        public void Draw()
+        {
+            Raylib.DrawRectangleV(position, size, color);
+        }
+
     }
 }
