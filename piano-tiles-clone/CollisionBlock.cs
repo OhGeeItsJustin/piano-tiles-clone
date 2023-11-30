@@ -15,5 +15,15 @@ namespace piano_tiles_clone
         Vector2 size;
         Color color;
 
+        public CollisionBlock(int positionX, int positionY, Color color)
+        {
+            size.X = 100;
+            size.Y = 100;
+            position.X = positionX;
+            position.Y = positionY;
+            this.color = color;
+
+        }
+
     }
 }
