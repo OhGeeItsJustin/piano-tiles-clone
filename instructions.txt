@@ -1,0 +1,6 @@
+Game drops 10 music notes from the top off the screen.
+Have 4 blocks at bottom of the screen (Q, W, E, R).
+When the music note is inside the a block player has to press the corresponding key on that block.
+If player misses a note and it hits bottom of the screen combo will go negative.
+At -4 combo game ends and player loses.
+If player finishes all 10 notes without -4 combo the player wins
