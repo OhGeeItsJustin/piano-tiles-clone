@@ -51,6 +51,7 @@ namespace piano_tiles_clone
             combo = 0;
             playerScore = 0;
 
+            // Set up CollisionBlock objects
             int collisionBlockY = 450;
             int collisionBlockX = 50;
             for (int i = 0; i < collisionBlocks.Length; i++)
@@ -61,6 +62,7 @@ namespace piano_tiles_clone
 
             InitAudioDevice();
 
+            // Set up MusicNote objects
             for (int j = 0; j < 10; j++)
             {
                 MusicNote note = new MusicNote();
@@ -70,6 +72,7 @@ namespace piano_tiles_clone
 
         static void Update()
         {
+            // Display certain image depending on current combo
             if(combo > 4)
             {
                 image.DisplayGoodImage();
@@ -81,18 +84,22 @@ namespace piano_tiles_clone
                 image.DisplayBadImage();
             }
 
+            // If combo is not -4 and notes still has MusicNote objects keep drawing game objects
             if (combo != -4 && notes.Count != 0)
             {
+                // Draw all CollisionBlock objects
                 for (int i = 0; i < collisionBlocks.Length; i++)
                 {
                     collisionBlocks[i].Draw();
                 }
+
+                // If notes array still has MusicNote objects draw and move them to screen
                 if(notes.Count != 0)
                 {
                     notes[0].Draw();
                     notes[0].Move();
 
-                    //Your game code run each frame here
+                    // Make music notes enter and leave screen nicely
                     Vector2 position = notes[0].GetPosition();
                     if (position.Y > 500)
                     {
@@ -103,10 +110,12 @@ namespace piano_tiles_clone
                         notes[0].NoteAppear();
                     }
 
+                    // Check if music note has collided with collision block or bottom of the screen
                     for (int i = 0; i < collisionBlocks.Length; i++)
                     {
                         if (notes.Count > 0)
                         {
+                            // If music note collides with collision block and user presses correct key delete music note object, update score and combo
                             if (collisionBlocks[i].CollideWithNote(notes[0]))
                             {
                                 playerScore++;
@@ -121,6 +130,7 @@ namespace piano_tiles_clone
                                 }
                             }
                         }
+                        // If music note collides with bottom of screene delete music note object, update score and combo
                         if (notes.Count > 0)
                         {
                             if (notes[0].NextNote())
@@ -140,6 +150,7 @@ namespace piano_tiles_clone
                     }
                 }
 
+                // Display collision block text, game score & combo
                 Raylib.DrawText("Q", 90, 485, 32, Color.BLACK);
                 Raylib.DrawText("W", 290, 485, 32, Color.BLACK);
                 Raylib.DrawText("E", 490, 485, 32, Color.BLACK);
@@ -147,10 +158,12 @@ namespace piano_tiles_clone
                 Raylib.DrawText("Combo: " + combo.ToString(), 10, 10, 32, Color.BLACK);
                 Raylib.DrawText("Score: " + playerScore.ToString(), 10, 40, 32, Color.BLACK);
             }
+            // If player hits -4 combo end game
             else if (combo == -4)
             {
                 Raylib.DrawText($"Game Over final score: {playerScore}", (int)(Raylib.GetScreenHeight() / 3), (int)(Raylib.GetScreenWidth() / 3), 32, Color.BLACK);
             }
+            // If player doesn't have -4 combo but music notes array hits 0 end game
             else if (combo > -4 && notes.Count == 0)
             {
                 Raylib.DrawText($"Congrats you win! Final Score: {playerScore}", (int)(Raylib.GetScreenHeight() / 4), (int)(Raylib.GetScreenWidth() / 3), 32, Color.BLACK);
