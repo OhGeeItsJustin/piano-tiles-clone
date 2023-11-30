@@ -15,7 +15,8 @@ namespace piano_tiles_clone
         Image badStamp;
         Image nuteralStamp;
         public GamesImage() 
-        { 
+        {
+            goodStamp = LoadImage("../../../Image assets/good job image.jpg");
 
         }
     }
