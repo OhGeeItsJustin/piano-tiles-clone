@@ -95,7 +95,6 @@ namespace piano_tiles_clone
             if (size.Y < 100)
             {
                 size.Y++;
-                sound.PlayQSound();
             }
             else
             {
