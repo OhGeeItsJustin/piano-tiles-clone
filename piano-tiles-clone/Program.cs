@@ -8,6 +8,8 @@ namespace piano_tiles_clone
         // If you need variables in the Program class (outside functions), you must mark them as static
         static string title = "Game Title";
         static MusicNote note;
+        static GamesImage image; 
+         
 
         static void Main(string[] args)
         {
@@ -41,10 +43,12 @@ namespace piano_tiles_clone
         {
             // Your one-time setup code here
             note = new MusicNote();
+            image = new GamesImage();
         }
 
         static void Update()
         {
+            image.DisplayGoodImage();
             // Your game code run each frame here
             Vector2 position = note.GetPosition();
             if (position.Y > 500)

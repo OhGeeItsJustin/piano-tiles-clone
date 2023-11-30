@@ -9,29 +9,58 @@ using static Raylib_cs.Raylib;
 
 namespace piano_tiles_clone
 {
-    internal class GamesImage
+    public class GamesImage
     {
         Image goodStamp;
         Image badStamp;
         Image nuteralStamp;
         Texture2D goodStampTexture;
+        Texture2D badStampTexture;
+        Texture2D nuteralStampTexture; 
         public GamesImage() 
         {
+            //this will be used to load and unload each image 
             goodStamp = LoadImage("../../../Image assets/good job image.jpg");
             goodStampTexture = LoadTextureFromImage(goodStamp);
-
-            //bad stamp 
+            UnloadImage(goodStamp);
+            badStamp = LoadImage("../../../Image assets/bad image.png");
+            badStampTexture = LoadTextureFromImage(badStamp);
+            UnloadImage(badStamp);
+            nuteralStamp = LoadImage("../../../Image assets/ok image.jpg");
+            nuteralStampTexture = LoadTextureFromImage(nuteralStamp);
+            UnloadImage(nuteralStamp);
+             
 
 
         }
 
         public void DisplayGoodImage () 
         {
+            BeginDrawing();
             DrawTexture(
                 goodStampTexture,
                 600,
                 0,
                 Color.WHITE);
         }
+        public void DisplayBadImage () 
+        { 
+            BeginDrawing();
+            DrawTexture(
+                 badStampTexture,
+                 600,
+                 0,
+                 Color.WHITE);
+        }
+        public void DisplayNuteralImage () 
+        { 
+            BeginDrawing(); 
+            DrawTexture(
+                nuteralStampTexture,
+                600,
+                0,
+                Color.WHITE);
+        }
+
     }
 }
